@@ -1,0 +1,3 @@
+[install]
+# minimum age config
+minimumReleaseAge = 259200 # seconds
