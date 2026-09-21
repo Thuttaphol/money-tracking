@@ -1,6 +1,6 @@
 "use server";
 
-import { SignupFormSchema, FormState } from "@/lib/definitions";
+import { SignupFormSchema, FormState } from "@/definitions/signup-definitions";
 import * as z from "zod";
 
 export async function signup(state: FormState, formData: FormData) {

@@ -1,6 +1,6 @@
-import { SignupForm } from "@/app/register/components/signup-form";
+import { SignupForm } from "@/app/signup/components/signup-form";
 
-export default function RegisterPage() {
+export default function SignupPage() {
   return (
     <main className="flex h-dvh items-center justify-center">
       <SignupForm />
