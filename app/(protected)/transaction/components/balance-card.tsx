@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { BalanceSkeleton } from "./balance-skeleton";
 
 type TotalBalanceResponseType = {
   totalBalance: number;
@@ -11,8 +12,7 @@ type TotalBalanceResponseType = {
 
 export function BalanceCard() {
   const [loading, setLoading] = useState(true);
-  const [balanceResponse, setBalanceResponse] =
-    useState<TotalBalanceResponseType | null>(null);
+  const [totalBalance, setTotalBalance] = useState<number>(0);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -29,15 +29,15 @@ export function BalanceCard() {
 
         const data: TotalBalanceResponseType = await response.json();
 
-        setBalanceResponse(data);
+        setTotalBalance(data.totalBalance);
+        setLoading(false);
       } catch (error) {
         if (error instanceof Error && error.name === "AbortError") {
           return;
         }
 
-        console.log(error);
-      } finally {
         setLoading(false);
+        console.log(error);
       }
     }
 
@@ -53,13 +53,17 @@ export function BalanceCard() {
     currency: "THB",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(balanceResponse?.totalBalance ?? 0);
+  }).format(totalBalance);
 
   return (
     <Card className="flex flex-col items-center rounded-lg">
       <CardContent className="flex flex-col items-center">
         <CardDescription className="text-base">เงินทั้งหมด</CardDescription>
-        <Label className="text-3xl">{formattedBalance}</Label>
+        {loading ? (
+          <BalanceSkeleton />
+        ) : (
+          <Label className="text-3xl">{formattedBalance}</Label>
+        )}
       </CardContent>
     </Card>
   );
