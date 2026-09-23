@@ -54,7 +54,7 @@ export function SigninForm() {
         return;
       }
 
-      router.push("/");
+      router.push("/transaction");
     } catch (error) {
       console.log(error);
     } finally {

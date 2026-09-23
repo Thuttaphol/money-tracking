@@ -35,7 +35,6 @@ export function AuthUserProvider({ children }: { children: ReactNode }) {
 
       if (response.status === 401) {
         setUserInfo(null);
-        return;
       }
 
       if (!response.ok) {
