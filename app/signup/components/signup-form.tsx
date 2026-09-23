@@ -11,8 +11,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signup } from "../lib/signup";
 import { useActionState } from "react";
+import Link from "next/link";
+
+import { signup } from "../lib/signup";
 
 export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined);
@@ -78,6 +80,8 @@ export function SignupForm() {
           <Button type="submit" disabled={pending} className="w-full">
             สมัครใช้งาน
           </Button>
+          <div className="text-muted-foreground">หรือ</div>
+          <Link href="/signin">เข้าใช้งาน</Link>
         </CardFooter>
       </Card>
     </form>
