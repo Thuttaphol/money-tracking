@@ -13,15 +13,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, type SubmitEvent } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import { FormState } from "@/definitions/signin-definitions";
 import { validateSignin } from "../lib/signin";
+import { useAuthUser } from "@/app/contexts/auth-context";
 
 export function SigninForm() {
-  const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [formState, setFormState] = useState<FormState>(undefined);
+  const { refreshUser } = useAuthUser();
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,7 +56,7 @@ export function SigninForm() {
         return;
       }
 
-      router.push("/transaction");
+      await refreshUser();
     } catch (error) {
       console.log(error);
     } finally {
