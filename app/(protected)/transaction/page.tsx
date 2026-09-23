@@ -1,5 +1,11 @@
 "use client";
 
+import { BalanceCard } from "./components/balance-card";
+
 export default function TransactionPage() {
-  return <div>Transactoin Page</div>;
+  return (
+    <div className="m-4">
+      <BalanceCard />
+    </div>
+  );
 }
