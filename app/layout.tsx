@@ -19,16 +19,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("font-sans", inter.variable)}
     >
       <body>
-        <AuthUserProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </AuthUserProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthUserProvider>{children}</AuthUserProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
