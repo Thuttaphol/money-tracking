@@ -18,7 +18,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
     meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
-export const postApiAuthRegister = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthRegisterData, ThrowOnError>): RequestResult<PostApiAuthRegisterResponses, PostApiAuthRegisterErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthRegisterResponses, PostApiAuthRegisterErrors, ThrowOnError>({
+export const postApiAuthRegister = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthRegisterData, ThrowOnError>): RequestResult<PostApiAuthRegisterResponses, PostApiAuthRegisterErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthRegisterResponses, PostApiAuthRegisterErrors, ThrowOnError>({
     url: '/api/auth/register',
     ...options,
     headers: {
@@ -27,7 +27,7 @@ export const postApiAuthRegister = <ThrowOnError extends boolean = false>(option
     }
 });
 
-export const postApiAuthLogin = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthLoginData, ThrowOnError>): RequestResult<PostApiAuthLoginResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthLoginResponses, unknown, ThrowOnError>({
+export const postApiAuthLogin = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthLoginData, ThrowOnError>): RequestResult<PostApiAuthLoginResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthLoginResponses, unknown, ThrowOnError>({
     url: '/api/auth/login',
     ...options,
     headers: {
@@ -36,7 +36,7 @@ export const postApiAuthLogin = <ThrowOnError extends boolean = false>(options: 
     }
 });
 
-export const postApiAuthRefresh = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthRefreshData, ThrowOnError>): RequestResult<PostApiAuthRefreshResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthRefreshResponses, unknown, ThrowOnError>({
+export const postApiAuthRefresh = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthRefreshData, ThrowOnError>): RequestResult<PostApiAuthRefreshResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthRefreshResponses, unknown, ThrowOnError>({
     url: '/api/auth/refresh',
     ...options,
     headers: {
@@ -45,9 +45,9 @@ export const postApiAuthRefresh = <ThrowOnError extends boolean = false>(options
     }
 });
 
-export const mapIdentityApiApiAuthConfirmEmail = <ThrowOnError extends boolean = false>(options: Options<MapIdentityApiApiAuthConfirmEmailData, ThrowOnError>): RequestResult<MapIdentityApiApiAuthConfirmEmailResponses, unknown, ThrowOnError> => (options.client ?? client).get<MapIdentityApiApiAuthConfirmEmailResponses, unknown, ThrowOnError>({ url: '/api/auth/confirmEmail', ...options });
+export const mapIdentityApiApiAuthConfirmEmail = <ThrowOnError extends boolean = true>(options: Options<MapIdentityApiApiAuthConfirmEmailData, ThrowOnError>): RequestResult<MapIdentityApiApiAuthConfirmEmailResponses, unknown, ThrowOnError> => (options.client ?? client).get<MapIdentityApiApiAuthConfirmEmailResponses, unknown, ThrowOnError>({ url: '/api/auth/confirmEmail', ...options });
 
-export const postApiAuthResendConfirmationEmail = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthResendConfirmationEmailData, ThrowOnError>): RequestResult<PostApiAuthResendConfirmationEmailResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthResendConfirmationEmailResponses, unknown, ThrowOnError>({
+export const postApiAuthResendConfirmationEmail = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthResendConfirmationEmailData, ThrowOnError>): RequestResult<PostApiAuthResendConfirmationEmailResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiAuthResendConfirmationEmailResponses, unknown, ThrowOnError>({
     url: '/api/auth/resendConfirmationEmail',
     ...options,
     headers: {
@@ -56,7 +56,7 @@ export const postApiAuthResendConfirmationEmail = <ThrowOnError extends boolean 
     }
 });
 
-export const postApiAuthForgotPassword = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthForgotPasswordData, ThrowOnError>): RequestResult<PostApiAuthForgotPasswordResponses, PostApiAuthForgotPasswordErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthForgotPasswordResponses, PostApiAuthForgotPasswordErrors, ThrowOnError>({
+export const postApiAuthForgotPassword = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthForgotPasswordData, ThrowOnError>): RequestResult<PostApiAuthForgotPasswordResponses, PostApiAuthForgotPasswordErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthForgotPasswordResponses, PostApiAuthForgotPasswordErrors, ThrowOnError>({
     url: '/api/auth/forgotPassword',
     ...options,
     headers: {
@@ -65,7 +65,7 @@ export const postApiAuthForgotPassword = <ThrowOnError extends boolean = false>(
     }
 });
 
-export const postApiAuthResetPassword = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthResetPasswordData, ThrowOnError>): RequestResult<PostApiAuthResetPasswordResponses, PostApiAuthResetPasswordErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthResetPasswordResponses, PostApiAuthResetPasswordErrors, ThrowOnError>({
+export const postApiAuthResetPassword = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthResetPasswordData, ThrowOnError>): RequestResult<PostApiAuthResetPasswordResponses, PostApiAuthResetPasswordErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthResetPasswordResponses, PostApiAuthResetPasswordErrors, ThrowOnError>({
     url: '/api/auth/resetPassword',
     ...options,
     headers: {
@@ -74,7 +74,7 @@ export const postApiAuthResetPassword = <ThrowOnError extends boolean = false>(o
     }
 });
 
-export const postApiAuthManage2Fa = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthManage2FaData, ThrowOnError>): RequestResult<PostApiAuthManage2FaResponses, PostApiAuthManage2FaErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthManage2FaResponses, PostApiAuthManage2FaErrors, ThrowOnError>({
+export const postApiAuthManage2Fa = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthManage2FaData, ThrowOnError>): RequestResult<PostApiAuthManage2FaResponses, PostApiAuthManage2FaErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthManage2FaResponses, PostApiAuthManage2FaErrors, ThrowOnError>({
     url: '/api/auth/manage/2fa',
     ...options,
     headers: {
@@ -83,9 +83,9 @@ export const postApiAuthManage2Fa = <ThrowOnError extends boolean = false>(optio
     }
 });
 
-export const getApiAuthManageInfo = <ThrowOnError extends boolean = false>(options?: Options<GetApiAuthManageInfoData, ThrowOnError>): RequestResult<GetApiAuthManageInfoResponses, GetApiAuthManageInfoErrors, ThrowOnError> => (options?.client ?? client).get<GetApiAuthManageInfoResponses, GetApiAuthManageInfoErrors, ThrowOnError>({ url: '/api/auth/manage/info', ...options });
+export const getApiAuthManageInfo = <ThrowOnError extends boolean = true>(options?: Options<GetApiAuthManageInfoData, ThrowOnError>): RequestResult<GetApiAuthManageInfoResponses, GetApiAuthManageInfoErrors, ThrowOnError> => (options?.client ?? client).get<GetApiAuthManageInfoResponses, GetApiAuthManageInfoErrors, ThrowOnError>({ url: '/api/auth/manage/info', ...options });
 
-export const postApiAuthManageInfo = <ThrowOnError extends boolean = false>(options: Options<PostApiAuthManageInfoData, ThrowOnError>): RequestResult<PostApiAuthManageInfoResponses, PostApiAuthManageInfoErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthManageInfoResponses, PostApiAuthManageInfoErrors, ThrowOnError>({
+export const postApiAuthManageInfo = <ThrowOnError extends boolean = true>(options: Options<PostApiAuthManageInfoData, ThrowOnError>): RequestResult<PostApiAuthManageInfoResponses, PostApiAuthManageInfoErrors, ThrowOnError> => (options.client ?? client).post<PostApiAuthManageInfoResponses, PostApiAuthManageInfoErrors, ThrowOnError>({
     url: '/api/auth/manage/info',
     ...options,
     headers: {
@@ -94,9 +94,9 @@ export const postApiAuthManageInfo = <ThrowOnError extends boolean = false>(opti
     }
 });
 
-export const getApiCategories = <ThrowOnError extends boolean = false>(options?: Options<GetApiCategoriesData, ThrowOnError>): RequestResult<GetApiCategoriesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiCategoriesResponses, unknown, ThrowOnError>({ url: '/api/Categories', ...options });
+export const getApiCategories = <ThrowOnError extends boolean = true>(options?: Options<GetApiCategoriesData, ThrowOnError>): RequestResult<GetApiCategoriesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiCategoriesResponses, unknown, ThrowOnError>({ url: '/api/Categories', ...options });
 
-export const postApiCategories = <ThrowOnError extends boolean = false>(options: Options<PostApiCategoriesData, ThrowOnError>): RequestResult<PostApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiCategoriesResponses, unknown, ThrowOnError>({
+export const postApiCategories = <ThrowOnError extends boolean = true>(options: Options<PostApiCategoriesData, ThrowOnError>): RequestResult<PostApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiCategoriesResponses, unknown, ThrowOnError>({
     url: '/api/Categories',
     ...options,
     headers: {
@@ -105,7 +105,7 @@ export const postApiCategories = <ThrowOnError extends boolean = false>(options:
     }
 });
 
-export const putApiCategories = <ThrowOnError extends boolean = false>(options: Options<PutApiCategoriesData, ThrowOnError>): RequestResult<PutApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiCategoriesResponses, unknown, ThrowOnError>({
+export const putApiCategories = <ThrowOnError extends boolean = true>(options: Options<PutApiCategoriesData, ThrowOnError>): RequestResult<PutApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiCategoriesResponses, unknown, ThrowOnError>({
     url: '/api/Categories',
     ...options,
     headers: {
@@ -114,13 +114,13 @@ export const putApiCategories = <ThrowOnError extends boolean = false>(options: 
     }
 });
 
-export const deleteApiCategoriesByCategoryId = <ThrowOnError extends boolean = false>(options: Options<DeleteApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
+export const deleteApiCategoriesByCategoryId = <ThrowOnError extends boolean = true>(options: Options<DeleteApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
 
-export const getApiCategoriesByCategoryId = <ThrowOnError extends boolean = false>(options: Options<GetApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
+export const getApiCategoriesByCategoryId = <ThrowOnError extends boolean = true>(options: Options<GetApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
 
-export const getApiTransactions = <ThrowOnError extends boolean = false>(options: Options<GetApiTransactionsData, ThrowOnError>): RequestResult<GetApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsResponses, unknown, ThrowOnError>({ url: '/api/Transactions', ...options });
+export const getApiTransactions = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsData, ThrowOnError>): RequestResult<GetApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsResponses, unknown, ThrowOnError>({ url: '/api/Transactions', ...options });
 
-export const postApiTransactions = <ThrowOnError extends boolean = false>(options: Options<PostApiTransactionsData, ThrowOnError>): RequestResult<PostApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiTransactionsResponses, unknown, ThrowOnError>({
+export const postApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PostApiTransactionsData, ThrowOnError>): RequestResult<PostApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiTransactionsResponses, unknown, ThrowOnError>({
     url: '/api/Transactions',
     ...options,
     headers: {
@@ -129,7 +129,7 @@ export const postApiTransactions = <ThrowOnError extends boolean = false>(option
     }
 });
 
-export const putApiTransactions = <ThrowOnError extends boolean = false>(options: Options<PutApiTransactionsData, ThrowOnError>): RequestResult<PutApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiTransactionsResponses, unknown, ThrowOnError>({
+export const putApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PutApiTransactionsData, ThrowOnError>): RequestResult<PutApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiTransactionsResponses, unknown, ThrowOnError>({
     url: '/api/Transactions',
     ...options,
     headers: {
@@ -138,10 +138,10 @@ export const putApiTransactions = <ThrowOnError extends boolean = false>(options
     }
 });
 
-export const deleteApiTransactionsByTransactionId = <ThrowOnError extends boolean = false>(options: Options<DeleteApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
+export const deleteApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<DeleteApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
 
-export const getApiTransactionsByTransactionId = <ThrowOnError extends boolean = false>(options: Options<GetApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
+export const getApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
 
-export const getApiTransactionsOffset = <ThrowOnError extends boolean = false>(options: Options<GetApiTransactionsOffsetData, ThrowOnError>): RequestResult<GetApiTransactionsOffsetResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsOffsetResponses, unknown, ThrowOnError>({ url: '/api/Transactions/offset', ...options });
+export const getApiTransactionsOffset = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsOffsetData, ThrowOnError>): RequestResult<GetApiTransactionsOffsetResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsOffsetResponses, unknown, ThrowOnError>({ url: '/api/Transactions/offset', ...options });
 
-export const getApiTransactionsTotalBalance = <ThrowOnError extends boolean = false>(options?: Options<GetApiTransactionsTotalBalanceData, ThrowOnError>): RequestResult<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError>({ url: '/api/Transactions/total-balance', ...options });
+export const getApiTransactionsTotalBalance = <ThrowOnError extends boolean = true>(options?: Options<GetApiTransactionsTotalBalanceData, ThrowOnError>): RequestResult<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError>({ url: '/api/Transactions/total-balance', ...options });
