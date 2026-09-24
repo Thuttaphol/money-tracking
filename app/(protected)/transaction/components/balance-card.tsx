@@ -5,55 +5,34 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { BalanceSkeleton } from "./balance-skeleton";
-
-type TotalBalanceResponseType = {
-  totalBalance: number;
-};
+import { getBalance } from "../api/get-balance";
 
 export function BalanceCard() {
   const [loading, setLoading] = useState(true);
-  const [totalBalance, setTotalBalance] = useState<number>(0);
+  const [totalBalance, setTotalBalance] = useState<string | undefined>("");
 
   useEffect(() => {
     const abortController = new AbortController();
 
     async function getTotalBalance() {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/Transactions/total-balance`,
-          {
-            credentials: "include",
-            signal: abortController.signal,
-          },
-        );
+        const totalBalance = await getBalance(abortController.signal);
+        if (abortController.signal.aborted) return;
 
-        const data: TotalBalanceResponseType = await response.json();
-
-        setTotalBalance(data.totalBalance);
+        setTotalBalance(totalBalance);
         setLoading(false);
       } catch (error) {
-        if (error instanceof Error && error.name === "AbortError") {
-          return;
-        }
+        if (abortController.signal.aborted) return;
 
-        setLoading(false);
         console.log(error);
+        setLoading(false);
       }
     }
 
     getTotalBalance();
 
-    return () => {
-      abortController.abort();
-    };
+    return () => abortController.abort();
   }, []);
-
-  const formattedBalance = new Intl.NumberFormat("th-TH", {
-    style: "currency",
-    currency: "THB",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(totalBalance);
 
   return (
     <Card className="flex flex-col items-center rounded-lg">
@@ -62,7 +41,7 @@ export function BalanceCard() {
         {loading ? (
           <BalanceSkeleton />
         ) : (
-          <Label className="text-3xl">{formattedBalance}</Label>
+          <Label className="text-3xl">{totalBalance}</Label>
         )}
       </CardContent>
     </Card>
