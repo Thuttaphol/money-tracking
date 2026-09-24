@@ -29,7 +29,7 @@ export function AuthUserProvider({ children }: { children: ReactNode }) {
   async function refreshUser() {
     try {
       const response = await fetch(
-        "http://localhost:5194/api/auth/manage/info",
+        `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/auth/manage/info`,
         { credentials: "include", cache: "no-store" },
       );
 

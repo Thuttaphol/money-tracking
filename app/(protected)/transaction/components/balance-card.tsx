@@ -20,7 +20,7 @@ export function BalanceCard() {
     async function getTotalBalance() {
       try {
         const response = await fetch(
-          "http://localhost:5194/api/Transactions/total-balance",
+          `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/Transactions/total-balance`,
           {
             credentials: "include",
             signal: abortController.signal,
