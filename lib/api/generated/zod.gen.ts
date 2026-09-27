@@ -9,6 +9,24 @@ export const zAccessTokenResponse = z.object({
     refreshToken: z.string()
 });
 
+export const zApiErrorResponse = z.object({
+    title: z.string(),
+    status: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    detail: z.string(),
+    traceId: z.string().nullish()
+});
+
+export const zApiValidationErrorResponse = z.object({
+    title: z.string(),
+    status: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    detail: z.string(),
+    errors: z.record(z.string(), z.array(z.string()))
+});
+
+export const zCategoryDeleteResponse = z.object({
+    isDeleted: z.boolean()
+});
+
 export const zCreateTransactionRequest = z.object({
     title: z.string().min(3).max(20),
     description: z.string().max(200).optional(),
@@ -68,6 +86,10 @@ export const zResetPasswordRequest = z.object({
 
 export const zTotalBalanceResponse = z.object({
     totalBalance: z.number()
+});
+
+export const zTransactionDeleteResponse = z.object({
+    isDeleted: z.boolean()
 });
 
 export const zTransactionResponse = z.object({
@@ -187,21 +209,21 @@ export const zGetApiCategoriesQuery = z.object({
 });
 
 /**
- * OK
+ * Categories return successfully
  */
-export const zGetApiCategoriesResponse = zCategoryResponse;
+export const zGetApiCategoriesResponse = z.array(zCategoryResponse);
 
 export const zPostApiCategoriesBody = zCreateCategoryRequest;
 
 /**
- * OK
+ * Create category return successfully
  */
 export const zPostApiCategoriesResponse = zCategoryResponse;
 
 export const zPutApiCategoriesBody = zUpdateCategoryRequest;
 
 /**
- * OK
+ * Update category return successfully
  */
 export const zPutApiCategoriesResponse = zCategoryResponse;
 
@@ -209,12 +231,17 @@ export const zDeleteApiCategoriesByCategoryIdPath = z.object({
     categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
 });
 
+/**
+ * OK
+ */
+export const zDeleteApiCategoriesByCategoryIdResponse = zCategoryDeleteResponse;
+
 export const zGetApiCategoriesByCategoryIdPath = z.object({
     categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
 });
 
 /**
- * OK
+ * A category return successfully
  */
 export const zGetApiCategoriesByCategoryIdResponse = zCategoryResponse;
 
@@ -227,21 +254,21 @@ export const zGetApiTransactionsQuery = z.object({
 });
 
 /**
- * OK
+ * Transactions return successfully
  */
-export const zGetApiTransactionsResponse = zTransactionResponse;
+export const zGetApiTransactionsResponse = z.array(zTransactionResponse);
 
 export const zPostApiTransactionsBody = zCreateTransactionRequest;
 
 /**
- * OK
+ * Create transaction return successfully
  */
 export const zPostApiTransactionsResponse = zTransactionResponse;
 
 export const zPutApiTransactionsBody = zUpdateTransactionRequest;
 
 /**
- * OK
+ * Update transaction return successfully
  */
 export const zPutApiTransactionsResponse = zTransactionResponse;
 
@@ -249,12 +276,17 @@ export const zDeleteApiTransactionsByTransactionIdPath = z.object({
     transactionId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
 });
 
+/**
+ * Delete transaction successfully
+ */
+export const zDeleteApiTransactionsByTransactionIdResponse = zTransactionDeleteResponse;
+
 export const zGetApiTransactionsByTransactionIdPath = z.object({
     transactionId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
 });
 
 /**
- * OK
+ * A transaction return successfully
  */
 export const zGetApiTransactionsByTransactionIdResponse = zTransactionResponse;
 
@@ -264,11 +296,11 @@ export const zGetApiTransactionsOffsetQuery = z.object({
 });
 
 /**
- * OK
+ * Transactions return successfully
  */
 export const zGetApiTransactionsOffsetResponse = zPageResponseOffsetResponseOfTransactionResponse;
 
 /**
- * OK
+ * TotalBalance return successfully
  */
 export const zGetApiTransactionsTotalBalanceResponse = zTotalBalanceResponse;

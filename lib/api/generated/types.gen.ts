@@ -11,6 +11,26 @@ export type AccessTokenResponse = {
     refreshToken: string;
 };
 
+export type ApiErrorResponse = {
+    title: string;
+    status: number;
+    detail: string;
+    traceId?: null | string;
+};
+
+export type ApiValidationErrorResponse = {
+    title: string;
+    status: number;
+    detail: string;
+    errors: {
+        [key: string]: Array<string>;
+    };
+};
+
+export type CategoryDeleteResponse = {
+    isDeleted: boolean;
+};
+
 export type CategoryResponse = {
     id: number;
     name: string;
@@ -91,6 +111,10 @@ export type ResetPasswordRequest = {
 
 export type TotalBalanceResponse = {
     totalBalance: number;
+};
+
+export type TransactionDeleteResponse = {
+    isDeleted: boolean;
 };
 
 export type TransactionResponse = {
@@ -366,11 +390,20 @@ export type GetApiCategoriesData = {
     url: '/api/Categories';
 };
 
+export type GetApiCategoriesErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+};
+
+export type GetApiCategoriesError = GetApiCategoriesErrors[keyof GetApiCategoriesErrors];
+
 export type GetApiCategoriesResponses = {
     /**
-     * OK
+     * Categories return successfully
      */
-    200: CategoryResponse;
+    200: Array<CategoryResponse>;
 };
 
 export type GetApiCategoriesResponse = GetApiCategoriesResponses[keyof GetApiCategoriesResponses];
@@ -382,9 +415,18 @@ export type PostApiCategoriesData = {
     url: '/api/Categories';
 };
 
+export type PostApiCategoriesErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+};
+
+export type PostApiCategoriesError = PostApiCategoriesErrors[keyof PostApiCategoriesErrors];
+
 export type PostApiCategoriesResponses = {
     /**
-     * OK
+     * Create category return successfully
      */
     200: CategoryResponse;
 };
@@ -398,9 +440,22 @@ export type PutApiCategoriesData = {
     url: '/api/Categories';
 };
 
+export type PutApiCategoriesErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+    /**
+     * Category not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type PutApiCategoriesError = PutApiCategoriesErrors[keyof PutApiCategoriesErrors];
+
 export type PutApiCategoriesResponses = {
     /**
-     * OK
+     * Update category return successfully
      */
     200: CategoryResponse;
 };
@@ -420,8 +475,10 @@ export type DeleteApiCategoriesByCategoryIdResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: CategoryDeleteResponse;
 };
+
+export type DeleteApiCategoriesByCategoryIdResponse = DeleteApiCategoriesByCategoryIdResponses[keyof DeleteApiCategoriesByCategoryIdResponses];
 
 export type GetApiCategoriesByCategoryIdData = {
     body?: never;
@@ -432,9 +489,18 @@ export type GetApiCategoriesByCategoryIdData = {
     url: '/api/Categories/{categoryId}';
 };
 
+export type GetApiCategoriesByCategoryIdErrors = {
+    /**
+     * Category not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type GetApiCategoriesByCategoryIdError = GetApiCategoriesByCategoryIdErrors[keyof GetApiCategoriesByCategoryIdErrors];
+
 export type GetApiCategoriesByCategoryIdResponses = {
     /**
-     * OK
+     * A category return successfully
      */
     200: CategoryResponse;
 };
@@ -454,11 +520,20 @@ export type GetApiTransactionsData = {
     url: '/api/Transactions';
 };
 
+export type GetApiTransactionsErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+};
+
+export type GetApiTransactionsError = GetApiTransactionsErrors[keyof GetApiTransactionsErrors];
+
 export type GetApiTransactionsResponses = {
     /**
-     * OK
+     * Transactions return successfully
      */
-    200: TransactionResponse;
+    200: Array<TransactionResponse>;
 };
 
 export type GetApiTransactionsResponse = GetApiTransactionsResponses[keyof GetApiTransactionsResponses];
@@ -470,9 +545,18 @@ export type PostApiTransactionsData = {
     url: '/api/Transactions';
 };
 
+export type PostApiTransactionsErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+};
+
+export type PostApiTransactionsError = PostApiTransactionsErrors[keyof PostApiTransactionsErrors];
+
 export type PostApiTransactionsResponses = {
     /**
-     * OK
+     * Create transaction return successfully
      */
     200: TransactionResponse;
 };
@@ -486,9 +570,22 @@ export type PutApiTransactionsData = {
     url: '/api/Transactions';
 };
 
+export type PutApiTransactionsErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+    /**
+     * Transaction not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type PutApiTransactionsError = PutApiTransactionsErrors[keyof PutApiTransactionsErrors];
+
 export type PutApiTransactionsResponses = {
     /**
-     * OK
+     * Update transaction return successfully
      */
     200: TransactionResponse;
 };
@@ -504,12 +601,23 @@ export type DeleteApiTransactionsByTransactionIdData = {
     url: '/api/Transactions/{transactionId}';
 };
 
+export type DeleteApiTransactionsByTransactionIdErrors = {
+    /**
+     * Transaction not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type DeleteApiTransactionsByTransactionIdError = DeleteApiTransactionsByTransactionIdErrors[keyof DeleteApiTransactionsByTransactionIdErrors];
+
 export type DeleteApiTransactionsByTransactionIdResponses = {
     /**
-     * OK
+     * Delete transaction successfully
      */
-    200: unknown;
+    200: TransactionDeleteResponse;
 };
+
+export type DeleteApiTransactionsByTransactionIdResponse = DeleteApiTransactionsByTransactionIdResponses[keyof DeleteApiTransactionsByTransactionIdResponses];
 
 export type GetApiTransactionsByTransactionIdData = {
     body?: never;
@@ -520,9 +628,18 @@ export type GetApiTransactionsByTransactionIdData = {
     url: '/api/Transactions/{transactionId}';
 };
 
+export type GetApiTransactionsByTransactionIdErrors = {
+    /**
+     * Transaction not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type GetApiTransactionsByTransactionIdError = GetApiTransactionsByTransactionIdErrors[keyof GetApiTransactionsByTransactionIdErrors];
+
 export type GetApiTransactionsByTransactionIdResponses = {
     /**
-     * OK
+     * A transaction return successfully
      */
     200: TransactionResponse;
 };
@@ -539,9 +656,18 @@ export type GetApiTransactionsOffsetData = {
     url: '/api/Transactions/offset';
 };
 
+export type GetApiTransactionsOffsetErrors = {
+    /**
+     * Invalid paratmeters
+     */
+    400: ApiValidationErrorResponse;
+};
+
+export type GetApiTransactionsOffsetError = GetApiTransactionsOffsetErrors[keyof GetApiTransactionsOffsetErrors];
+
 export type GetApiTransactionsOffsetResponses = {
     /**
-     * OK
+     * Transactions return successfully
      */
     200: PageResponseOffsetResponseOfTransactionResponse;
 };
@@ -557,7 +683,7 @@ export type GetApiTransactionsTotalBalanceData = {
 
 export type GetApiTransactionsTotalBalanceResponses = {
     /**
-     * OK
+     * TotalBalance return successfully
      */
     200: TotalBalanceResponse;
 };

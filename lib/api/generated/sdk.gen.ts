@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { DeleteApiCategoriesByCategoryIdData, DeleteApiCategoriesByCategoryIdResponses, DeleteApiTransactionsByTransactionIdData, DeleteApiTransactionsByTransactionIdResponses, GetApiAuthManageInfoData, GetApiAuthManageInfoErrors, GetApiAuthManageInfoResponses, GetApiCategoriesByCategoryIdData, GetApiCategoriesByCategoryIdResponses, GetApiCategoriesData, GetApiCategoriesResponses, GetApiTransactionsByTransactionIdData, GetApiTransactionsByTransactionIdResponses, GetApiTransactionsData, GetApiTransactionsOffsetData, GetApiTransactionsOffsetResponses, GetApiTransactionsResponses, GetApiTransactionsTotalBalanceData, GetApiTransactionsTotalBalanceResponses, MapIdentityApiApiAuthConfirmEmailData, MapIdentityApiApiAuthConfirmEmailResponses, PostApiAuthForgotPasswordData, PostApiAuthForgotPasswordErrors, PostApiAuthForgotPasswordResponses, PostApiAuthLoginData, PostApiAuthLoginResponses, PostApiAuthManage2FaData, PostApiAuthManage2FaErrors, PostApiAuthManage2FaResponses, PostApiAuthManageInfoData, PostApiAuthManageInfoErrors, PostApiAuthManageInfoResponses, PostApiAuthRefreshData, PostApiAuthRefreshResponses, PostApiAuthRegisterData, PostApiAuthRegisterErrors, PostApiAuthRegisterResponses, PostApiAuthResendConfirmationEmailData, PostApiAuthResendConfirmationEmailResponses, PostApiAuthResetPasswordData, PostApiAuthResetPasswordErrors, PostApiAuthResetPasswordResponses, PostApiCategoriesData, PostApiCategoriesResponses, PostApiTransactionsData, PostApiTransactionsResponses, PutApiCategoriesData, PutApiCategoriesResponses, PutApiTransactionsData, PutApiTransactionsResponses } from './types.gen';
+import type { DeleteApiCategoriesByCategoryIdData, DeleteApiCategoriesByCategoryIdResponses, DeleteApiTransactionsByTransactionIdData, DeleteApiTransactionsByTransactionIdErrors, DeleteApiTransactionsByTransactionIdResponses, GetApiAuthManageInfoData, GetApiAuthManageInfoErrors, GetApiAuthManageInfoResponses, GetApiCategoriesByCategoryIdData, GetApiCategoriesByCategoryIdErrors, GetApiCategoriesByCategoryIdResponses, GetApiCategoriesData, GetApiCategoriesErrors, GetApiCategoriesResponses, GetApiTransactionsByTransactionIdData, GetApiTransactionsByTransactionIdErrors, GetApiTransactionsByTransactionIdResponses, GetApiTransactionsData, GetApiTransactionsErrors, GetApiTransactionsOffsetData, GetApiTransactionsOffsetErrors, GetApiTransactionsOffsetResponses, GetApiTransactionsResponses, GetApiTransactionsTotalBalanceData, GetApiTransactionsTotalBalanceResponses, MapIdentityApiApiAuthConfirmEmailData, MapIdentityApiApiAuthConfirmEmailResponses, PostApiAuthForgotPasswordData, PostApiAuthForgotPasswordErrors, PostApiAuthForgotPasswordResponses, PostApiAuthLoginData, PostApiAuthLoginResponses, PostApiAuthManage2FaData, PostApiAuthManage2FaErrors, PostApiAuthManage2FaResponses, PostApiAuthManageInfoData, PostApiAuthManageInfoErrors, PostApiAuthManageInfoResponses, PostApiAuthRefreshData, PostApiAuthRefreshResponses, PostApiAuthRegisterData, PostApiAuthRegisterErrors, PostApiAuthRegisterResponses, PostApiAuthResendConfirmationEmailData, PostApiAuthResendConfirmationEmailResponses, PostApiAuthResetPasswordData, PostApiAuthResetPasswordErrors, PostApiAuthResetPasswordResponses, PostApiCategoriesData, PostApiCategoriesErrors, PostApiCategoriesResponses, PostApiTransactionsData, PostApiTransactionsErrors, PostApiTransactionsResponses, PutApiCategoriesData, PutApiCategoriesErrors, PutApiCategoriesResponses, PutApiTransactionsData, PutApiTransactionsErrors, PutApiTransactionsResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -94,9 +94,9 @@ export const postApiAuthManageInfo = <ThrowOnError extends boolean = true>(optio
     }
 });
 
-export const getApiCategories = <ThrowOnError extends boolean = true>(options?: Options<GetApiCategoriesData, ThrowOnError>): RequestResult<GetApiCategoriesResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiCategoriesResponses, unknown, ThrowOnError>({ url: '/api/Categories', ...options });
+export const getApiCategories = <ThrowOnError extends boolean = true>(options?: Options<GetApiCategoriesData, ThrowOnError>): RequestResult<GetApiCategoriesResponses, GetApiCategoriesErrors, ThrowOnError> => (options?.client ?? client).get<GetApiCategoriesResponses, GetApiCategoriesErrors, ThrowOnError>({ url: '/api/Categories', ...options });
 
-export const postApiCategories = <ThrowOnError extends boolean = true>(options: Options<PostApiCategoriesData, ThrowOnError>): RequestResult<PostApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiCategoriesResponses, unknown, ThrowOnError>({
+export const postApiCategories = <ThrowOnError extends boolean = true>(options: Options<PostApiCategoriesData, ThrowOnError>): RequestResult<PostApiCategoriesResponses, PostApiCategoriesErrors, ThrowOnError> => (options.client ?? client).post<PostApiCategoriesResponses, PostApiCategoriesErrors, ThrowOnError>({
     url: '/api/Categories',
     ...options,
     headers: {
@@ -105,7 +105,7 @@ export const postApiCategories = <ThrowOnError extends boolean = true>(options: 
     }
 });
 
-export const putApiCategories = <ThrowOnError extends boolean = true>(options: Options<PutApiCategoriesData, ThrowOnError>): RequestResult<PutApiCategoriesResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiCategoriesResponses, unknown, ThrowOnError>({
+export const putApiCategories = <ThrowOnError extends boolean = true>(options: Options<PutApiCategoriesData, ThrowOnError>): RequestResult<PutApiCategoriesResponses, PutApiCategoriesErrors, ThrowOnError> => (options.client ?? client).put<PutApiCategoriesResponses, PutApiCategoriesErrors, ThrowOnError>({
     url: '/api/Categories',
     ...options,
     headers: {
@@ -116,11 +116,11 @@ export const putApiCategories = <ThrowOnError extends boolean = true>(options: O
 
 export const deleteApiCategoriesByCategoryId = <ThrowOnError extends boolean = true>(options: Options<DeleteApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
 
-export const getApiCategoriesByCategoryId = <ThrowOnError extends boolean = true>(options: Options<GetApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiCategoriesByCategoryIdResponses, unknown, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
+export const getApiCategoriesByCategoryId = <ThrowOnError extends boolean = true>(options: Options<GetApiCategoriesByCategoryIdData, ThrowOnError>): RequestResult<GetApiCategoriesByCategoryIdResponses, GetApiCategoriesByCategoryIdErrors, ThrowOnError> => (options.client ?? client).get<GetApiCategoriesByCategoryIdResponses, GetApiCategoriesByCategoryIdErrors, ThrowOnError>({ url: '/api/Categories/{categoryId}', ...options });
 
-export const getApiTransactions = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsData, ThrowOnError>): RequestResult<GetApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsResponses, unknown, ThrowOnError>({ url: '/api/Transactions', ...options });
+export const getApiTransactions = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsData, ThrowOnError>): RequestResult<GetApiTransactionsResponses, GetApiTransactionsErrors, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsResponses, GetApiTransactionsErrors, ThrowOnError>({ url: '/api/Transactions', ...options });
 
-export const postApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PostApiTransactionsData, ThrowOnError>): RequestResult<PostApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).post<PostApiTransactionsResponses, unknown, ThrowOnError>({
+export const postApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PostApiTransactionsData, ThrowOnError>): RequestResult<PostApiTransactionsResponses, PostApiTransactionsErrors, ThrowOnError> => (options.client ?? client).post<PostApiTransactionsResponses, PostApiTransactionsErrors, ThrowOnError>({
     url: '/api/Transactions',
     ...options,
     headers: {
@@ -129,7 +129,7 @@ export const postApiTransactions = <ThrowOnError extends boolean = true>(options
     }
 });
 
-export const putApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PutApiTransactionsData, ThrowOnError>): RequestResult<PutApiTransactionsResponses, unknown, ThrowOnError> => (options.client ?? client).put<PutApiTransactionsResponses, unknown, ThrowOnError>({
+export const putApiTransactions = <ThrowOnError extends boolean = true>(options: Options<PutApiTransactionsData, ThrowOnError>): RequestResult<PutApiTransactionsResponses, PutApiTransactionsErrors, ThrowOnError> => (options.client ?? client).put<PutApiTransactionsResponses, PutApiTransactionsErrors, ThrowOnError>({
     url: '/api/Transactions',
     ...options,
     headers: {
@@ -138,10 +138,10 @@ export const putApiTransactions = <ThrowOnError extends boolean = true>(options:
     }
 });
 
-export const deleteApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<DeleteApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).delete<DeleteApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
+export const deleteApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<DeleteApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<DeleteApiTransactionsByTransactionIdResponses, DeleteApiTransactionsByTransactionIdErrors, ThrowOnError> => (options.client ?? client).delete<DeleteApiTransactionsByTransactionIdResponses, DeleteApiTransactionsByTransactionIdErrors, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
 
-export const getApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsByTransactionIdResponses, unknown, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
+export const getApiTransactionsByTransactionId = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsByTransactionIdData, ThrowOnError>): RequestResult<GetApiTransactionsByTransactionIdResponses, GetApiTransactionsByTransactionIdErrors, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsByTransactionIdResponses, GetApiTransactionsByTransactionIdErrors, ThrowOnError>({ url: '/api/Transactions/{transactionId}', ...options });
 
-export const getApiTransactionsOffset = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsOffsetData, ThrowOnError>): RequestResult<GetApiTransactionsOffsetResponses, unknown, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsOffsetResponses, unknown, ThrowOnError>({ url: '/api/Transactions/offset', ...options });
+export const getApiTransactionsOffset = <ThrowOnError extends boolean = true>(options: Options<GetApiTransactionsOffsetData, ThrowOnError>): RequestResult<GetApiTransactionsOffsetResponses, GetApiTransactionsOffsetErrors, ThrowOnError> => (options.client ?? client).get<GetApiTransactionsOffsetResponses, GetApiTransactionsOffsetErrors, ThrowOnError>({ url: '/api/Transactions/offset', ...options });
 
 export const getApiTransactionsTotalBalance = <ThrowOnError extends boolean = true>(options?: Options<GetApiTransactionsTotalBalanceData, ThrowOnError>): RequestResult<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetApiTransactionsTotalBalanceResponses, unknown, ThrowOnError>({ url: '/api/Transactions/total-balance', ...options });
