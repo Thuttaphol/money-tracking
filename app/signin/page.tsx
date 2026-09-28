@@ -16,7 +16,7 @@ export default function SigninPage() {
   }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   if (isAuthenticated) {

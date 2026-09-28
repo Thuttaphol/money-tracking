@@ -65,7 +65,7 @@ export function SigninForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="w-full max-w-sm">
       <Card>
         <CardHeader>
           <CardTitle>เข้าใช้งาน</CardTitle>

@@ -16,7 +16,7 @@ export default function SignupPage() {
   }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   if (isAuthenticated) {
