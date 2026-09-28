@@ -9,7 +9,6 @@ export default defineConfig({
     {
       name: "@hey-api/client-next",
       runtimeConfigPath: "./lib/hey-api",
-      throwOnError: true,
     },
     "zod",
   ],
