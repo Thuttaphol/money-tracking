@@ -33,8 +33,8 @@ export function TransactionList() {
         const result = await getTransactions(reference, 20, signal);
 
         setTransactions((current) => [...current, ...result.data]);
-        setReference((reference) => (reference = result.reference));
-        setHasMore((hasMore) => (hasMore = result.hasMore));
+        setReference(result.reference);
+        setHasMore(result.hasMore);
       } catch (error) {
         if (signal.aborted) {
           return;
@@ -110,7 +110,7 @@ export function TransactionList() {
                   <div className="h-full text-base">{"\u00A0"}</div>
                 ) : (
                   <div className="text-secondary-foreground text-base">
-                    transaction.description
+                    {transaction.description}
                   </div>
                 )}
               </CardContent>
@@ -120,7 +120,6 @@ export function TransactionList() {
         );
       })}
       {loading && <TransactionsListSkeleton />}
-
       <div ref={observerTargetRef} />
     </Card>
   );
