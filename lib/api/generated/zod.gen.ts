@@ -108,6 +108,12 @@ export const zPageResponseOffsetResponseOfTransactionResponse = z.object({
     data: z.array(zTransactionResponse).optional()
 });
 
+export const zTransactionsPageKeysetResponseOfTransactionResponse = z.object({
+    reference: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    hasMore: z.boolean(),
+    data: z.array(zTransactionResponse)
+});
+
 export const zTransactionType = z.enum(['Income', 'Expense']);
 
 export const zCategoryResponse = z.object({
@@ -256,7 +262,7 @@ export const zGetApiTransactionsQuery = z.object({
 /**
  * Transactions return successfully
  */
-export const zGetApiTransactionsResponse = z.array(zTransactionResponse);
+export const zGetApiTransactionsResponse = zTransactionsPageKeysetResponseOfTransactionResponse;
 
 export const zPostApiTransactionsBody = zCreateTransactionRequest;
 

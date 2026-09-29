@@ -125,6 +125,12 @@ export type TransactionResponse = {
     categoryId: number;
 };
 
+export type TransactionsPageKeysetResponseOfTransactionResponse = {
+    reference: number;
+    hasMore: boolean;
+    data: Array<TransactionResponse>;
+};
+
 export type TransactionType = 'Income' | 'Expense';
 
 export type TwoFactorRequest = {
@@ -533,7 +539,7 @@ export type GetApiTransactionsResponses = {
     /**
      * Transactions return successfully
      */
-    200: Array<TransactionResponse>;
+    200: TransactionsPageKeysetResponseOfTransactionResponse;
 };
 
 export type GetApiTransactionsResponse = GetApiTransactionsResponses[keyof GetApiTransactionsResponses];
