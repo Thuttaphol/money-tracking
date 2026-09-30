@@ -7,6 +7,8 @@ import { AppError } from "@/lib/api/app-error";
 import { TransactionResponse } from "@/lib/api/generated";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 export function TransactionList() {
   const [error, setError] = useState<AppError>();
@@ -90,6 +92,20 @@ export function TransactionList() {
       observer.unobserve(target);
     };
   }, [loading, hasMore, loadTransactions]);
+
+  function handleTryLoadTransaction() {
+    const abortController = new AbortController();
+    loadTransactions(abortController.signal);
+  }
+
+  if (error) {
+    return (
+      <Card className="flex flex-1 flex-col items-center justify-center gap-4 overflow-auto p-2 text-base">
+        <Label>ดาวน์โหลข้อมูลไม่สำเร็จ โปรดลองอีกครั้ง</Label>
+        <Button onClick={handleTryLoadTransaction}>ลองอีกครั้ง</Button>
+      </Card>
+    );
+  }
 
   return (
     <Card className="flex flex-1 flex-col gap-2 overflow-auto p-2">
