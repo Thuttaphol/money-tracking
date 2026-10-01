@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function TransactionList() {
   const [error, setError] = useState<AppError>();
@@ -111,31 +112,39 @@ export function TransactionList() {
     <Card className="flex flex-1 flex-col gap-2 overflow-auto p-2">
       {transactions.map((transaction) => {
         return (
-          <div
-            key={transaction.id}
-            className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg"
-          >
-            <div className="flex flex-1 flex-col">
-              <CardHeader className="text-sidebar-primary px-4 py-2 text-lg">
-                {transaction.title}
-              </CardHeader>
-              <CardContent className="px-5 pb-2">
-                {transaction.description === null ||
-                transaction.description === undefined ||
-                transaction.description === "" ? (
-                  <div className="h-full text-base">{"\u00A0"}</div>
-                ) : (
-                  <div className="text-secondary-foreground text-base">
-                    {transaction.description}
-                  </div>
-                )}
-              </CardContent>
+          <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
+            <div
+              key={transaction.id}
+              className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg"
+            >
+              <div className="flex flex-1 flex-col">
+                <CardHeader className="text-sidebar-primary px-4 py-2 text-lg">
+                  {transaction.title}
+                </CardHeader>
+                <CardContent className="px-5 pb-2">
+                  {transaction.description === null ||
+                  transaction.description === undefined ||
+                  transaction.description === "" ? (
+                    <div className="h-full text-base">{"\u00A0"}</div>
+                  ) : (
+                    <div className="text-secondary-foreground text-base">
+                      {transaction.description}
+                    </div>
+                  )}
+                </CardContent>
+              </div>
+              <ChevronRight className="text-secondary-foreground mr-3" />
             </div>
-            <ChevronRight className="text-secondary-foreground mr-3" />
-          </div>
+          </Link>
         );
       })}
-      {loading && <TransactionsListSkeleton />}
+      {loading && (
+        <div className="flex flex-col">
+          <TransactionsListSkeleton />
+          <TransactionsListSkeleton />
+          <TransactionsListSkeleton />
+        </div>
+      )}
       <div ref={observerTargetRef} />
     </Card>
   );
