@@ -1,21 +1,22 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
+
 import { TransactionsListSkeleton } from "./transactions-list-skeleton";
 import { getTransactions } from "../api/get-transactions";
 import { AppError } from "@/lib/api/app-error";
 import { TransactionResponse } from "@/lib/api/generated";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ChevronRight } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export function TransactionList() {
   const [error, setError] = useState<AppError>();
+  const [loading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
 
-  const [loading, setLoading] = useState(false);
   const [reference, setReference] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
@@ -33,11 +34,11 @@ export function TransactionList() {
 
       try {
         setLoading(true);
-        const result = await getTransactions(reference, 20, signal);
+        const transactions = await getTransactions(reference, 20, signal);
 
-        setTransactions((current) => [...current, ...result.data]);
-        setReference(result.reference);
-        setHasMore(result.hasMore);
+        setTransactions((current) => [...current, ...transactions.data]);
+        setReference(transactions.reference);
+        setHasMore(transactions.hasMore);
       } catch (error) {
         if (signal.aborted) {
           return;
@@ -60,17 +61,16 @@ export function TransactionList() {
         }
       }
     },
-    [hasMore, loading, reference],
+    [loading, reference, hasMore],
   );
 
   useEffect(() => {
     const target = observerTargetRef.current;
+    const abortController = new AbortController();
 
     if (!target) {
       return;
     }
-
-    const abortController = new AbortController();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -81,8 +81,7 @@ export function TransactionList() {
         }
       },
       {
-        root: null,
-        rootMargin: "200px",
+        scrollMargin: "0px 0px 500px 0px",
         threshold: 0,
       },
     );
@@ -92,7 +91,7 @@ export function TransactionList() {
     return () => {
       observer.unobserve(target);
     };
-  }, [loading, hasMore, loadTransactions]);
+  }, [loadTransactions]);
 
   function handleTryLoadTransaction() {
     const abortController = new AbortController();
@@ -115,7 +114,7 @@ export function TransactionList() {
           <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
             <div
               key={transaction.id}
-              className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg"
+              className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg hover:cursor-default"
             >
               <div className="flex flex-1 flex-col">
                 <CardHeader className="text-sidebar-primary px-4 py-2 text-lg">
