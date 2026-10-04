@@ -523,7 +523,7 @@ export type GetApiTransactionsData = {
         Title?: string;
         Description?: string;
         CategoryId?: number;
-        Reference: number;
+        Reference?: number;
         PageSize: number;
     };
     url: '/api/Transactions';

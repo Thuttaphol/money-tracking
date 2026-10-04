@@ -7,7 +7,7 @@ import { zTransactionsPageKeysetResponseOfTransactionResponse } from "@/lib/api/
 import { handleApiError } from "@/lib/api/handle-api-error";
 
 export async function getTransactions(
-  reference: number,
+  reference: number | undefined,
   pageSize: number,
   signal: AbortSignal,
 ): Promise<TransactionsPageKeysetResponseOfTransactionResponse> {

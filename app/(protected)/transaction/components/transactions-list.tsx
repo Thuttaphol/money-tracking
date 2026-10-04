@@ -17,7 +17,7 @@ export function TransactionList() {
   const [loading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
 
-  const [reference, setReference] = useState(0);
+  const [reference, setReference] = useState<number>();
   const [hasMore, setHasMore] = useState(true);
 
   const observerTargetRef = useRef<HTMLDivElement | null>(null);
