@@ -47,6 +47,7 @@ export type CreateTransactionRequest = {
     description?: string;
     amount: number;
     categoryId: number;
+    transactionDate: string;
 };
 
 export type ForgotPasswordRequest = {
@@ -123,7 +124,7 @@ export type TransactionResponse = {
     description: string;
     amount: number;
     categoryName: string;
-    updatedDate: string;
+    transactionDate: string;
 };
 
 export type TransactionsPageKeysetResponseOfTransactionResponse = {
@@ -162,6 +163,7 @@ export type UpdateTransactionRequest = {
     description?: string;
     amount?: number;
     categoryId?: number;
+    transactionDate?: string;
 };
 
 export type PostApiAuthRegisterData = {

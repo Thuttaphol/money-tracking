@@ -78,6 +78,10 @@ export default function TransactionPage({
     );
   }
 
+  const formattedTransactionDate = new Date(
+    transaction.transactionDate,
+  ).toLocaleDateString();
+
   return (
     <div className="flex h-svh">
       <Card className="m-4 flex w-full flex-col gap-5 overflow-auto p-2">
@@ -98,7 +102,7 @@ export default function TransactionPage({
           className="rounded-lg text-base"
         />
         <Input
-          defaultValue={transaction.updatedDate}
+          defaultValue={formattedTransactionDate}
           className="rounded-lg text-base"
         />
         <div className="flex w-full justify-evenly gap-4">

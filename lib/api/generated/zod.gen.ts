@@ -31,7 +31,8 @@ export const zCreateTransactionRequest = z.object({
     title: z.string().min(3).max(20),
     description: z.string().max(200).optional(),
     amount: z.number().gte(0.01).lte(10000000),
-    categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+    categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
+    transactionDate: z.iso.datetime()
 });
 
 export const zForgotPasswordRequest = z.object({
@@ -98,7 +99,7 @@ export const zTransactionResponse = z.object({
     description: z.string(),
     amount: z.number(),
     categoryName: z.string(),
-    updatedDate: z.iso.datetime()
+    transactionDate: z.iso.datetime()
 });
 
 export const zPageResponseOffsetResponseOfTransactionResponse = z.object({
@@ -155,7 +156,8 @@ export const zUpdateTransactionRequest = z.object({
     title: z.string().min(3).max(20).optional(),
     description: z.string().max(200).optional(),
     amount: z.number().gte(0.01).lte(10000000).optional(),
-    categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }).optional()
+    categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }).optional(),
+    transactionDate: z.iso.datetime().optional()
 });
 
 export const zPostApiAuthRegisterBody = zRegisterRequest;
