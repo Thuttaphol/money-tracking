@@ -17,8 +17,10 @@ import Link from "next/link";
 import { FormState } from "@/definitions/signin-definitions";
 import { validateSignin } from "../lib/signin";
 import { useAuthUser } from "@/app/contexts/auth-context";
+import { useRouter } from "next/navigation";
 
 export function SigninForm() {
+  const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [formState, setFormState] = useState<FormState>(undefined);
   const { refreshUser } = useAuthUser();
@@ -39,7 +41,7 @@ export function SigninForm() {
       }
 
       const response = await fetch(
-        "http://localhost:5194/api/auth/login?useCookies=true",
+        "http://192.168.0.2:5194/api/auth/login?useCookies=true",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -57,6 +59,8 @@ export function SigninForm() {
       }
 
       await refreshUser();
+
+      router.replace("/transaction");
     } catch (error) {
       console.log(error);
     } finally {
