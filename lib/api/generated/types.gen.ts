@@ -123,6 +123,7 @@ export type TransactionResponse = {
     title: string;
     description: string;
     amount: number;
+    categoryId: number;
     categoryName: string;
     transactionDate: string;
 };

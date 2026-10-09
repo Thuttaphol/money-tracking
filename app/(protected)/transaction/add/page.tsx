@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ChangeEvent, type SubmitEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  type SubmitEvent,
+  useEffect,
+  useState,
+} from "react";
 import { getCategories } from "./api/get-categories";
 import { AppError } from "@/lib/api/app-error";
 import { handleApiError } from "@/lib/api/handle-api-error";
@@ -21,6 +27,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { createTransaction } from "./api/create-transation";
 import { CreateTransactionRequest } from "@/lib/api/generated";
 import { useRouter } from "next/navigation";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function TransactionPage() {
   const router = useRouter();
@@ -88,34 +95,29 @@ export default function TransactionPage() {
     const { name, value } = event.target;
 
     if (name === "title") {
-      if (
-        value.startsWith(" ") ||
-        value.includes("  ") ||
-        value.endsWith(" ")
-      ) {
+      if (value.startsWith(" ") || value.includes("  ")) {
         return;
       }
 
-      setTransaction((prev) => ({ ...prev, title: value }));
-    }
-
-    if (name === "description") {
-      if (
-        value.startsWith(" ") ||
-        value.includes("  ") ||
-        value.endsWith(" ")
-      ) {
-        return;
-      }
-
-      setTransaction((prev) => ({ ...prev, description: value }));
+      setTransaction((prev) => ({ ...prev, title: value.trimEnd() }));
     }
 
     if (name === "amount") {
       if (/^\d*(\.\d{0,2})?$/.test(value)) {
-        console.log("in if");
         setTransaction((prev) => ({ ...prev, amount: value }));
       }
+    }
+  }
+
+  function handleDescriptionChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    const { name, value } = event.target;
+
+    if (name === "description") {
+      if (value.startsWith(" ") || value.includes("  ")) {
+        return;
+      }
+
+      setTransaction((prev) => ({ ...prev, description: value.trimEnd() }));
     }
   }
 
@@ -154,7 +156,12 @@ export default function TransactionPage() {
       const response = await createTransaction(payload, abortController.signal);
 
       if (!response) {
-        throw error;
+        setError(
+          new AppError("Something went wrong.", {
+            type: "UNKNOWN_ERROR",
+            cause: error,
+          }),
+        );
       }
 
       router.replace("/transaction");
@@ -187,11 +194,11 @@ export default function TransactionPage() {
             </div>
             <div>
               <Label className="mb-1">รายละเอียด</Label>
-              <Input
+              <Textarea
                 name="description"
                 placeholder="รายละเอียด"
                 value={transaction.description}
-                onChange={handleInputChange}
+                onChange={handleDescriptionChange}
                 className="rounded-lg text-base"
               />
             </div>
