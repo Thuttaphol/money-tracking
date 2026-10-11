@@ -107,6 +107,15 @@ export function TransactionList() {
     );
   }
 
+  function formattedAmount(amount: number) {
+    return Intl.NumberFormat("th-TH", {
+      style: "currency",
+      currency: "THB",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  }
+
   return (
     <Card className="flex flex-1 flex-col gap-2 overflow-auto p-2">
       {transactions.map((transaction) => {
@@ -117,16 +126,27 @@ export function TransactionList() {
               className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg hover:cursor-default"
             >
               <div className="flex flex-1 flex-col">
-                <CardHeader className="text-sidebar-primary px-4 py-2 text-lg">
-                  {transaction.title}
-                </CardHeader>
+                <div className="flex">
+                  <CardHeader className="flex-2 py-2 pl-4 text-lg">
+                    {transaction.title}
+                  </CardHeader>
+                  {transaction.transactionType === "Income" ? (
+                    <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-green-700">
+                      +{formattedAmount(transaction.amount)}
+                    </CardHeader>
+                  ) : (
+                    <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-red-700">
+                      -{formattedAmount(transaction.amount)}
+                    </CardHeader>
+                  )}
+                </div>
                 <CardContent className="px-5 pb-2">
                   {transaction.description === null ||
                   transaction.description === undefined ||
                   transaction.description === "" ? (
                     <div className="h-full text-base">{"\u00A0"}</div>
                   ) : (
-                    <div className="text-secondary-foreground text-base">
+                    <div className="text-base text-gray-400">
                       {transaction.description}
                     </div>
                   )}

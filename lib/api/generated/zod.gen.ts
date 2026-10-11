@@ -100,6 +100,7 @@ export const zTransactionResponse = z.object({
     amount: z.number(),
     categoryId: z.int().min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' }).max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
     categoryName: z.string(),
+    transactionType: z.string(),
     transactionDate: z.iso.datetime()
 });
 

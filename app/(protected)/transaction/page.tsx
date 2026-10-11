@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BalanceCard } from "./components/balance-card";
 import { TransactionList } from "./components/transactions-list";
 import { AddTransactionButton } from "@/components/add-transaction-button";
+import { Plus } from "lucide-react";
 
 export default function TransactionPage() {
   return (
@@ -13,8 +14,8 @@ export default function TransactionPage() {
         <TransactionList />
       </div>
       <Link href="/transaction/add">
-        <AddTransactionButton className="fixed right-0 bottom-0 m-3 h-10 p-5 text-center text-lg">
-          เพิ่มรายการ
+        <AddTransactionButton className="fixed right-0 bottom-0 m-6 size-14">
+          <Plus />
         </AddTransactionButton>
       </Link>
     </>

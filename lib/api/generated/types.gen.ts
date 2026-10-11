@@ -125,6 +125,7 @@ export type TransactionResponse = {
     amount: number;
     categoryId: number;
     categoryName: string;
+    transactionType: string;
     transactionDate: string;
 };
 

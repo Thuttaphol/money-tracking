@@ -59,8 +59,10 @@ export function BalanceCard() {
           <BalanceSkeleton />
         ) : error ? (
           <Label>ไม่สามารถดึงข้อมูลได้</Label>
+        ) : totalBalance?.startsWith("-") ? (
+          <Label className="text-3xl text-red-700">{totalBalance}</Label>
         ) : (
-          <Label className="text-3xl">{totalBalance}</Label>
+          <Label className="text-3xl text-green-700">{totalBalance}</Label>
         )}
       </CardContent>
     </Card>
