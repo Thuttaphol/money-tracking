@@ -11,7 +11,7 @@ export function AddTransactionButton({
   ...props
 }: ButtonProps) {
   return (
-    <Button className={cn("rounded-lg", className)} {...props}>
+    <Button className={cn("rounded-full", className)} {...props}>
       {children}
     </Button>
   );
