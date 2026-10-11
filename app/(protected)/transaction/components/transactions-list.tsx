@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
@@ -116,6 +116,15 @@ export function TransactionList() {
     }).format(amount);
   }
 
+  function formattedDate(date: string) {
+    return Intl.DateTimeFormat("th-TH", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "Asia/Bangkok",
+    }).format(new Date(date));
+  }
+
   return (
     <Card className="flex flex-1 flex-col gap-2 overflow-auto p-2">
       {transactions.map((transaction) => {
@@ -140,17 +149,22 @@ export function TransactionList() {
                     </CardHeader>
                   )}
                 </div>
-                <CardContent className="px-5 pb-2">
-                  {transaction.description === null ||
-                  transaction.description === undefined ||
-                  transaction.description === "" ? (
-                    <div className="h-full text-base">{"\u00A0"}</div>
-                  ) : (
-                    <div className="text-base text-gray-400">
-                      {transaction.description}
-                    </div>
-                  )}
-                </CardContent>
+                <div className="flex flex-1">
+                  <div className="px-5 pb-2">
+                    {transaction.description === null ||
+                    transaction.description === undefined ||
+                    transaction.description === "" ? (
+                      <div className="h-full text-base">{"\u00A0"}</div>
+                    ) : (
+                      <div className="text-base text-gray-300">
+                        {transaction.description}
+                      </div>
+                    )}
+                  </div>
+                  <div className="mr-0 flex-2 text-right text-gray-400">
+                    {formattedDate(transaction.transactionDate)}
+                  </div>
+                </div>
               </div>
               <ChevronRight className="text-secondary-foreground mr-3" />
             </div>
