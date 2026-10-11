@@ -700,3 +700,28 @@ export type GetApiTransactionsTotalBalanceResponses = {
 };
 
 export type GetApiTransactionsTotalBalanceResponse = GetApiTransactionsTotalBalanceResponses[keyof GetApiTransactionsTotalBalanceResponses];
+
+export type GetApiTransactionsAllData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/Transactions/all';
+};
+
+export type GetApiTransactionsAllErrors = {
+    /**
+     * Transaction not found
+     */
+    404: ApiErrorResponse;
+};
+
+export type GetApiTransactionsAllError = GetApiTransactionsAllErrors[keyof GetApiTransactionsAllErrors];
+
+export type GetApiTransactionsAllResponses = {
+    /**
+     * All Transaction return successfully
+     */
+    200: Array<TransactionResponse>;
+};
+
+export type GetApiTransactionsAllResponse = GetApiTransactionsAllResponses[keyof GetApiTransactionsAllResponses];

@@ -315,3 +315,8 @@ export const zGetApiTransactionsOffsetResponse = zPageResponseOffsetResponseOfTr
  * TotalBalance return successfully
  */
 export const zGetApiTransactionsTotalBalanceResponse = zTotalBalanceResponse;
+
+/**
+ * All Transaction return successfully
+ */
+export const zGetApiTransactionsAllResponse = z.array(zTransactionResponse);
