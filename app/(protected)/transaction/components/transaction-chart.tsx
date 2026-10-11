@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CategoryResponse, TransactionResponse } from "@/lib/api/generated";
 import { getAllTransaction } from "../api/get-all-transactions";
 import { getCategories } from "../add/api/get-categories";
-import { handleApiError } from "@/lib/api/handle-api-error";
+import { TransactionPieChartSkeleton } from "./chart-skeleton";
 
 export function TransactionPieChart() {
   const [error, setError] = useState<AppError>();
@@ -12,17 +12,20 @@ export function TransactionPieChart() {
   const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
   const [categories, setCategories] = useState<CategoryResponse[]>([]);
 
-  // load transactions
   useEffect(() => {
     const abortController = new AbortController();
 
-    async function loadAllTransaction() {
+    async function loadChartData() {
       try {
-        const transactions = await getAllTransaction(abortController.signal);
+        const [transactions, categories] = await Promise.all([
+          getAllTransaction(abortController.signal),
+          getCategories(abortController.signal),
+        ]);
 
         if (abortController.signal.aborted) return;
 
         setTransactions(transactions);
+        setCategories(categories);
       } catch (error) {
         if (abortController.signal.aborted) {
           return;
@@ -46,55 +49,7 @@ export function TransactionPieChart() {
       }
     }
 
-    loadAllTransaction();
-  }, []);
-
-  // get categories
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    async function loadCategories() {
-      try {
-        if (abortController.signal.aborted) {
-          return;
-        }
-
-        const categories = await getCategories(abortController.signal);
-
-        const categoryItems =
-          categories?.map((category) => ({
-            label: category.name,
-            value: category.id,
-          })) ?? [];
-
-        setCategories(categories);
-      } catch (error) {
-        if (abortController.signal.aborted) {
-          return;
-        }
-
-        if (error instanceof AppError) {
-          throw handleApiError(error);
-        }
-
-        setError(
-          new AppError("Something went wrong.", {
-            type: "UNKNOWN_ERROR",
-            cause: error,
-          }),
-        );
-      } finally {
-        if (!abortController.signal.aborted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    loadCategories();
-
-    return () => {
-      abortController.abort();
-    };
+    loadChartData();
   }, []);
 
   type ChartData = { data: { value: number; label: string }[] }[];
@@ -119,7 +74,7 @@ export function TransactionPieChart() {
   }
 
   if (loading) {
-    <p>Loading...</p>;
+    return <TransactionPieChartSkeleton />;
   }
 
   return (
