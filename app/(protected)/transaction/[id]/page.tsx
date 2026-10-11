@@ -217,7 +217,7 @@ export default function TransactionPage({
         );
       }
 
-      router.replace("/transaction");
+      router.push("/transaction");
     } catch (error) {
       throw handleApiError(error);
     }
