@@ -156,7 +156,7 @@ export function TransactionList() {
                     transaction.description === "" ? (
                       <div className="h-full text-base">{"\u00A0"}</div>
                     ) : (
-                      <div className="text-base text-gray-300">
+                      <div className="text-base text-gray-400">
                         {transaction.description}
                       </div>
                     )}
