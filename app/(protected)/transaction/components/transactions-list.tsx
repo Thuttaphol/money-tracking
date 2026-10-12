@@ -126,7 +126,7 @@ export function TransactionList() {
   }
 
   return (
-    <Card className="flex flex-1 flex-col gap-2 p-2">
+    <Card className="flex flex-1 flex-col gap-2 overflow-y-auto p-2">
       {transactions.map((transaction) => {
         return (
           <Link href={`/transaction/${transaction.id}`} key={transaction.id}>

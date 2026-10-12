@@ -70,7 +70,6 @@ export function BalanceCard() {
           <Label className="text-xl text-green-700">{totalBalance}</Label>
         )}
       </CardContent>
-      <CardFooter />
     </Card>
   );
 }
