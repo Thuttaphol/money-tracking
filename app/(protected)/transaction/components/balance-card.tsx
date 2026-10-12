@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-import { Card, CardContent, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { BalanceSkeleton } from "./balance-skeleton";
 import { getBalance } from "../api/get-balance";
@@ -54,17 +59,18 @@ export function BalanceCard() {
   return (
     <Card className="flex flex-col items-center rounded-lg">
       <CardContent className="flex flex-col items-center">
-        <CardDescription className="text-base">เงินทั้งหมด</CardDescription>
+        <CardDescription className="text-small">เงินทั้งหมด</CardDescription>
         {loading ? (
           <BalanceSkeleton />
         ) : error ? (
           <Label>ไม่สามารถดึงข้อมูลได้</Label>
         ) : totalBalance?.startsWith("-") ? (
-          <Label className="text-3xl text-red-700">{totalBalance}</Label>
+          <Label className="text-xl text-red-700">{totalBalance}</Label>
         ) : (
-          <Label className="text-3xl text-green-700">{totalBalance}</Label>
+          <Label className="text-xl text-green-700">{totalBalance}</Label>
         )}
       </CardContent>
+      <CardFooter />
     </Card>
   );
 }

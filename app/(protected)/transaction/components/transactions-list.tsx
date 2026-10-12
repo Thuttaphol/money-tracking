@@ -126,7 +126,7 @@ export function TransactionList() {
   }
 
   return (
-    <Card className="flex flex-1 flex-col gap-2 overflow-auto p-2">
+    <Card className="flex flex-1 flex-col gap-2 p-2">
       {transactions.map((transaction) => {
         return (
           <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
@@ -136,7 +136,7 @@ export function TransactionList() {
             >
               <div className="flex flex-1 flex-col">
                 <div className="flex">
-                  <CardHeader className="flex-2 py-2 pl-4 text-lg">
+                  <CardHeader className="flex-2 py-2 pl-4 text-base">
                     {transaction.title}
                   </CardHeader>
                   {transaction.transactionType === "Income" ? (
@@ -154,9 +154,9 @@ export function TransactionList() {
                     {transaction.description === null ||
                     transaction.description === undefined ||
                     transaction.description === "" ? (
-                      <div className="h-full text-base">{"\u00A0"}</div>
+                      <div className="h-full">{"\u00A0"}</div>
                     ) : (
-                      <div className="text-base text-gray-400">
+                      <div className="text-gray-400">
                         {transaction.description}
                       </div>
                     )}
