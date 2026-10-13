@@ -127,50 +127,56 @@ export function TransactionList() {
 
   return (
     <Card className="flex flex-1 flex-col gap-2 overflow-y-auto p-2">
-      {transactions.map((transaction) => {
-        return (
-          <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
-            <div
-              key={transaction.id}
-              className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg hover:cursor-default"
-            >
-              <div className="flex flex-1 flex-col">
-                <div className="flex">
-                  <CardHeader className="flex-2 py-2 pl-4 text-base">
-                    {transaction.title}
-                  </CardHeader>
-                  {transaction.transactionType === "Income" ? (
-                    <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-green-700">
-                      +{formattedAmount(transaction.amount)}
+      {transactions.length === 0 ? (
+        <Label className="flex h-full w-full justify-center">
+          ยังไม่มีข้อมูล
+        </Label>
+      ) : (
+        transactions.map((transaction) => {
+          return (
+            <Link href={`/transaction/${transaction.id}`} key={transaction.id}>
+              <div
+                key={transaction.id}
+                className="bg-sidebar-border hover:bg-sidebar-border/80 flex h-fit items-center justify-between rounded-lg hover:cursor-default"
+              >
+                <div className="flex flex-1 flex-col">
+                  <div className="flex">
+                    <CardHeader className="flex-2 py-2 pl-4 text-base">
+                      {transaction.title}
                     </CardHeader>
-                  ) : (
-                    <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-red-700">
-                      -{formattedAmount(transaction.amount)}
-                    </CardHeader>
-                  )}
-                </div>
-                <div className="flex flex-1">
-                  <div className="px-5 pb-2">
-                    {transaction.description === null ||
-                    transaction.description === undefined ||
-                    transaction.description === "" ? (
-                      <div className="h-full">{"\u00A0"}</div>
+                    {transaction.transactionType === "Income" ? (
+                      <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-green-700">
+                        +{formattedAmount(transaction.amount)}
+                      </CardHeader>
                     ) : (
-                      <div className="text-gray-400">
-                        {transaction.description}
-                      </div>
+                      <CardHeader className="flex-2 py-2 pr-0 text-right text-base text-red-700">
+                        -{formattedAmount(transaction.amount)}
+                      </CardHeader>
                     )}
                   </div>
-                  <div className="mr-0 flex-2 text-right text-gray-400">
-                    {formattedDate(transaction.transactionDate)}
+                  <div className="flex flex-1">
+                    <div className="px-5 pb-2">
+                      {transaction.description === null ||
+                      transaction.description === undefined ||
+                      transaction.description === "" ? (
+                        <div className="h-full">{"\u00A0"}</div>
+                      ) : (
+                        <div className="text-gray-400">
+                          {transaction.description}
+                        </div>
+                      )}
+                    </div>
+                    <div className="mr-0 flex-2 text-right text-gray-400">
+                      {formattedDate(transaction.transactionDate)}
+                    </div>
                   </div>
                 </div>
+                <ChevronRight className="text-secondary-foreground mr-3" />
               </div>
-              <ChevronRight className="text-secondary-foreground mr-3" />
-            </div>
-          </Link>
-        );
-      })}
+            </Link>
+          );
+        })
+      )}
       {loading && (
         <div className="flex flex-col">
           <TransactionsListSkeleton />
