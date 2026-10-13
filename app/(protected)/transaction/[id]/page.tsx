@@ -262,7 +262,7 @@ export default function TransactionPage({
   }
 
   return (
-    <div className="flex h-svh">
+    <div className="flex h-svh w-full">
       <Card className="m-4 flex w-full flex-col p-2">
         <CardHeader className="flex w-full justify-center text-lg">
           รายละเอียด

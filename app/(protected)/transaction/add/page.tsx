@@ -175,7 +175,7 @@ export default function TransactionPage() {
   }
 
   return (
-    <form onSubmit={handleTransactionSubmit}>
+    <form onSubmit={handleTransactionSubmit} className="w-full">
       <div className="flex h-svh">
         <Card className="m-4 flex w-full flex-col p-2">
           <CardHeader className="flex w-full justify-center text-lg">
