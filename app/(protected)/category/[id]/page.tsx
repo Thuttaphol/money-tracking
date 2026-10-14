@@ -23,6 +23,7 @@ import { handleApiError } from "@/lib/api/handle-api-error";
 import { getCategoryById } from "./api/get-category-by-id";
 import { deleteCategory } from "./api/delete-category";
 import { updateCategory } from "./api/update-category";
+import { CategoryPageSkeleton } from "./components/category-page-skeleton";
 
 export default function CategoryPage({
   params,
@@ -151,7 +152,7 @@ export default function CategoryPage({
   }
 
   if (loading) {
-    // return <TransactionPageSkeleton />;
+    return <CategoryPageSkeleton />;
   }
 
   if (error || !category) {
