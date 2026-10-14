@@ -28,7 +28,7 @@ export function AppSidebar() {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="/category">
-              <SidebarMenuButton>ปรเภทรายการ</SidebarMenuButton>
+              <SidebarMenuButton>ประเภทรายการ</SidebarMenuButton>
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
