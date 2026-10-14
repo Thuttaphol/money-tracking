@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -9,8 +11,11 @@ import {
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import Link from "next/link";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function AppSidebar() {
+  const { toggleSidebar } = useSidebar();
+
   return (
     <Sidebar>
       <div className="flex flex-row-reverse p-2">
@@ -19,16 +24,22 @@ export function AppSidebar() {
       <SidebarContent className="p-2">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton>จัดการบัญชี</SidebarMenuButton>
+            <SidebarMenuButton onClick={toggleSidebar}>
+              จัดการบัญชี
+            </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="/transaction">
-              <SidebarMenuButton>รายการเงิน</SidebarMenuButton>
+              <SidebarMenuButton onClick={toggleSidebar}>
+                รายการเงิน
+              </SidebarMenuButton>
             </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <Link href="/category">
-              <SidebarMenuButton>ประเภทรายการ</SidebarMenuButton>
+              <SidebarMenuButton onClick={toggleSidebar}>
+                ประเภทรายการ
+              </SidebarMenuButton>
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
