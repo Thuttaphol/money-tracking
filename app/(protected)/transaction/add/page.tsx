@@ -4,13 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  type SubmitEvent,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, type SubmitEvent, useEffect, useState } from "react";
 import { getCategories } from "./api/get-categories";
 import { AppError } from "@/lib/api/app-error";
 import { handleApiError } from "@/lib/api/handle-api-error";
@@ -142,8 +136,6 @@ export default function TransactionPage() {
 
     const abortController = new AbortController();
 
-    setButtonLoading(true);
-
     const payload: CreateTransactionRequest = {
       title: transaction.title,
       description: transaction.description,
@@ -153,6 +145,8 @@ export default function TransactionPage() {
     };
 
     try {
+      setButtonLoading(true);
+
       const response = await createTransaction(payload, abortController.signal);
 
       if (!response) {
@@ -230,13 +224,11 @@ export default function TransactionPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent alignItemWithTrigger>
-                    <SelectGroup>
-                      {categoryItems?.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
+                    {categoryItems?.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               )}

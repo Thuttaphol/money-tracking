@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { BalanceCard } from "./components/balance-card";
 import { TransactionList } from "./components/transactions-list";
-import { AddTransactionButton } from "@/components/add-transaction-button";
+import { AddTransactionButton } from "@/components/add-button";
 import { Plus } from "lucide-react";
 import { TransactionPieChart } from "./components/transaction-chart";
 
