@@ -7,13 +7,13 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
     <ProtectedRoute>
       <SidebarProvider>
-        <AppSidebar />
-        <div className="h-svh">
+        <div className="flex h-dvh w-full">
+          <AppSidebar />
           <div className="fixed">
             <SidebarTrigger size="lg" />
           </div>
+          {children}
         </div>
-        {children}
       </SidebarProvider>
     </ProtectedRoute>
   );

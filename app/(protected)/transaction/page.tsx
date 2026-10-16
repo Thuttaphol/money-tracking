@@ -9,9 +9,11 @@ import { TransactionPieChart } from "./components/transaction-chart";
 
 export default function TransactionPage() {
   return (
-    <div className="w-full">
+    <div className="h-full w-full">
       <div className="flex h-full flex-col gap-4 p-4">
-        <BalanceCard />
+        <div>
+          <BalanceCard />
+        </div>
         <div>
           <TransactionPieChart />
         </div>
