@@ -57,6 +57,9 @@ export function CategoryList() {
       className="flex flex-1 flex-col gap-2 overflow-y-auto p-2"
       aria-busy={loading}
     >
+      <CardHeader className="w-full text-center text-base">
+        ประเภทรายการ
+      </CardHeader>
       {loading ? (
         <CategoryListSkeleton />
       ) : categories.length === 0 ? (

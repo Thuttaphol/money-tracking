@@ -5,11 +5,7 @@ import { Button } from "./ui/button";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function AddTransactionButton({
-  className,
-  children,
-  ...props
-}: ButtonProps) {
+export function AddButton({ className, children, ...props }: ButtonProps) {
   return (
     <Button className={cn("rounded-full", className)} {...props}>
       {children}

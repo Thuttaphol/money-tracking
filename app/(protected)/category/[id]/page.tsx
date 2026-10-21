@@ -191,7 +191,10 @@ export default function CategoryPage({
               value={category.transactionType}
               onValueChange={handleTransactionTypeChange}
             >
-              <SelectTrigger className="w-full rounded-lg">
+              <SelectTrigger
+                className="w-full rounded-lg"
+                data-testid="transaction-type-select"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent alignItemWithTrigger>

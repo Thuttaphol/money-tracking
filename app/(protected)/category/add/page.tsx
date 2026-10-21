@@ -94,14 +94,17 @@ export default function CategoryPage() {
             </div>
 
             <div>
-              <Label className="mb-1">หมวดหมู่</Label>
+              <Label className="mb-1">ประเภทรายการ</Label>
               <Select
                 items={transactionTypeItem}
-                name="category"
+                name="transactionType"
                 value={category.transactionType}
                 onValueChange={handleTransactionTypeChange}
               >
-                <SelectTrigger className="w-full rounded-lg">
+                <SelectTrigger
+                  className="w-full rounded-lg"
+                  data-testid="transaction-type-select"
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger>
