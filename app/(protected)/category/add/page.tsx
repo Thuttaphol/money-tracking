@@ -66,7 +66,7 @@ export default function CategoryPage() {
 
       router.replace("/category");
     } catch (error) {
-      throw handleApiError(error);
+      setError(handleApiError(error));
     } finally {
       if (!abortController.signal.aborted) {
         setButtonLoading(false);
@@ -91,6 +91,11 @@ export default function CategoryPage() {
                 onChange={handleNameChange}
                 className="rounded-lg"
               />
+              {error && (
+                <Label className="m-1 text-red-500">
+                  {error.errors?.name[1]}
+                </Label>
+              )}
             </div>
 
             <div>

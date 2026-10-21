@@ -41,7 +41,7 @@ export function SigninForm() {
       }
 
       const response = await fetch(
-        "http://192.168.0.2:5194/api/auth/login?useCookies=true",
+        `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/auth/login?useCookies=true`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

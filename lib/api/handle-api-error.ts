@@ -19,7 +19,7 @@ function isApiErrorFromBackend(
 
 function isValidErrors(value: unknown): value is Record<string, string[]> {
   if (
-    value !== "object" ||
+    typeof value !== "object" ||
     value === null ||
     value === undefined ||
     Array.isArray(value)
@@ -51,7 +51,7 @@ export function handleApiError(error: unknown): AppError {
       });
     }
 
-    if ("errors" in error && isValidErrors(error)) {
+    if ("errors" in error && isValidErrors(error.errors)) {
       return new AppError(error.title, {
         type: "INVALID_REQUEST_ERROR",
         title: error.title,
