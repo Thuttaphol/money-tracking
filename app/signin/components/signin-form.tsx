@@ -38,20 +38,20 @@ export function SigninForm() {
       const validateResult = await validateSignin(email);
       if (!validateResult?.success) {
         setFormState(validateResult);
+        return;
       }
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/auth/login?useCookies=true`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        },
-      );
+      setFormState(undefined);
+
+      const response = await fetch("/backend/api/auth/login?useCookies=true", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
       if (!response.ok) {
         console.log("login failed");

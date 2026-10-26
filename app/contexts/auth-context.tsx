@@ -28,13 +28,14 @@ export function AuthUserProvider({ children }: { children: ReactNode }) {
 
   async function refreshUser() {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_CAPTAIN_API}/api/auth/manage/info`,
-        { credentials: "include", cache: "no-store" },
-      );
+      const response = await fetch("/backend/api/auth/manage/info", {
+        credentials: "include",
+        cache: "no-store",
+      });
 
       if (response.status === 401) {
         setUserInfo(null);
+        return;
       }
 
       if (!response.ok) {
