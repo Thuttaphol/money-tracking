@@ -30,16 +30,28 @@ export async function signup(state: FormState, formData: FormData) {
   }
 
   //regiteration
-  // try {
-  //   const response = await fetch("http://localhost:5194/api/auth/register", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password,
-  //     }),
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    const response = await fetch(
+      `${process.env.CAPTAIN_API}/api/auth/register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      return {
+        message: "Registeration failed. Please try again later.",
+        values: {
+          email: email,
+        },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }

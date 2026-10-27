@@ -80,6 +80,7 @@ export function SignupForm() {
           <Button type="submit" disabled={pending} className="w-full">
             สมัครใช้งาน
           </Button>
+          {state?.message && <p className="text-red-500">{state?.message}</p>}
           <div className="text-muted-foreground">หรือ</div>
           <Link href="/signin">เข้าใช้งาน</Link>
         </CardFooter>
